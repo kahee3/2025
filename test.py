@@ -117,6 +117,9 @@ else:
 # 푸터
 # ------------------------------
 st.markdown('<div class="footer">💡 본 정보는 일반 건강 가이드이며, 정확한 진단은 전문가와 상담하세요.</div>', unsafe_allow_html=True)
+pip install streamlit pandas
+streamlit run app.py
+
 
 
 
