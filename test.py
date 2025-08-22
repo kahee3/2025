@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 
 # ------------------------------
-# 질병별 데이터 + 이모지 매핑
+# 질병 데이터 + 이모지
 # ------------------------------
 disease_data = [
     {"질병명": "감기 🤧", "분류": "감염병", "증상": "콧물, 재채기, 기침",
@@ -22,64 +22,75 @@ disease_data = [
 df = pd.DataFrame(disease_data)
 
 # ------------------------------
-# 앱 UI 설정
+# 페이지 설정
 # ------------------------------
 st.set_page_config(page_title="🩺 질병별 치료 가이드", layout="centered")
-st.markdown(
-    """
-    <style>
-    /* 배경 애니메이션 */
-    body {
-        background: linear-gradient(270deg, #a8edea, #fed6e3, #fdfbfb, #a1c4fd, #c2e9fb);
-        background-size: 1000% 1000%;
-        animation: gradientShift 15s ease infinite;
-    }
 
-    @keyframes gradientShift {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
+# ------------------------------
+# 고급 CSS
+# ------------------------------
+st.markdown("""
+<style>
+/* 전체 배경 애니메이션 */
+body {
+    background: linear-gradient(-45deg, #ffecd2, #fcb69f, #ffdde1, #a1c4fd, #c2e9fb);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+}
+@keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
 
-    /* 제목 스타일 */
-    .title {
-        font-size: 45px;
-        font-weight: bold;
-        text-align: center;
-        color: #0b3954;
-        text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-    }
+/* 제목 스타일 */
+.title {
+    font-size: 48px;
+    font-weight: 900;
+    text-align: center;
+    color: #ffffff;
+    padding: 20px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    margin-bottom: 20px;
+}
 
-    /* 카드 스타일 */
-    .card {
-        background: rgba(255, 255, 255, 0.85);
-        border-radius: 20px;
-        padding: 20px;
-        margin: 15px 0;
-        box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 12px 24px rgba(0,0,0,0.2);
-    }
+/* 카드 스타일 */
+.card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    padding: 20px;
+    margin: 15px 0;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+.card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+}
 
-    /* 푸터 */
-    .footer {
-        text-align: center;
-        color: gray;
-        font-size: 14px;
-        margin-top: 20px;
-    }
-    </style>
-    """, unsafe_allow_html=True
-)
+/* 입력 UI */
+input, select {
+    border-radius: 10px !important;
+    padding: 5px;
+}
+
+/* 푸터 */
+.footer {
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    margin-top: 30px;
+}
+</style>
+""", unsafe_allow_html=True)
 
 # ------------------------------
 # 제목
 # ------------------------------
 st.markdown('<div class="title">🩺 질병별 치료 가이드</div>', unsafe_allow_html=True)
-st.write("💡 질병을 검색하거나, 분류별로 확인해보세요!")
+st.write("💡 **질병을 검색하거나 분류별로 찾아보세요!**")
 
 # ------------------------------
 # 검색 기능
@@ -88,7 +99,7 @@ search = st.text_input("🔍 **질병명을 입력하세요** (예: 감기, 우�
 category = st.selectbox("📂 **질병 분류 선택**", options=["전체"] + sorted(df["분류"].unique()))
 
 # ------------------------------
-# 검색 & 필터
+# 필터링
 # ------------------------------
 filtered_df = df.copy()
 if search:
@@ -103,7 +114,7 @@ if not filtered_df.empty:
     for _, row in filtered_df.iterrows():
         st.markdown(f"""
         <div class="card">
-            <h3 style='color:#0077b6;'>{row['질병명']}</h3>
+            <h3 style='color:#0077b6; font-weight:bold;'>{row['질병명']}</h3>
             <p><strong>📌 분류:</strong> {row['분류']}</p>
             <p><strong>🧾 증상:</strong> {row['증상']}</p>
             <p><strong>💊 치료법:</strong> {row['치료법']}</p>
@@ -111,14 +122,16 @@ if not filtered_df.empty:
         </div>
         """, unsafe_allow_html=True)
 else:
-    st.warning("⚠️ 검색 결과가 없습니다. 다시 입력해보세요!")
+    st.warning("⚠️ 검색 결과가 없습니다. 다른 키워드를 입력해보세요!")
 
 # ------------------------------
 # 푸터
 # ------------------------------
 st.markdown('<div class="footer">💡 본 정보는 일반 건강 가이드이며, 정확한 진단은 전문가와 상담하세요.</div>', unsafe_allow_html=True)
-pip install streamlit pandas
-streamlit run app.py
+
+
+  
+  
 
 
 
