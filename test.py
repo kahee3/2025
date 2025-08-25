@@ -138,5 +138,4 @@ st.markdown(f"""
 # 푸터
 st.markdown('<div class="footer">© 2025 건강 가이드 | 전문의 상담을 대신하지 않습니다 🏥</div>', unsafe_allow_html=True)
 
-  
-  
+        
