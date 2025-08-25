@@ -68,40 +68,52 @@ user_traits = st.text_area("💡 당신의 성격이나 평소 특성을 적어�
 def recommend_major(traits):
     traits = traits.lower()
     
-    if any(word in traits for word in ["논리", "분석", "문제 해결", "수학", "과학"]):
-        major = "💻 컴퓨터공학과"
-        description = (
-            "컴퓨터공학과는 소프트웨어 개발, 알고리즘, 데이터 분석, 인공지능 등 컴퓨터 관련 기술을 배우는 학과예요. 🖥️\n"
-            "학생들은 프로그래밍, 문제 해결, 프로젝트 수행 등을 통해 논리적 사고와 창의력을 키워요. 🚀\n"
-            "졸업 후에는 소프트웨어 개발자, 데이터 분석가, AI 연구원 등 다양한 IT 분야로 진출할 수 있어요. 🎯"
-        )
-        return major, description
+     # IT/공학
+    if any(word in traits for word in ["논리", "분석", "수학", "프로그래밍"]):
+        return "💻 컴퓨터공학과", "컴퓨터공학과는 소프트웨어 개발, 알고리즘, 인공지능 등을 배우는 학과예요. 🖥️"
+    elif any(word in traits for word in ["전자", "회로", "기계", "로봇"]):
+        return "🤖 전자/로봇공학과", "로봇, 전자회로, 자동화 시스템 등을 배우며 공학적 문제 해결 능력을 키워요."
 
-    elif any(word in traits for word in ["사람", "도움", "교류", "상담", "심리", "공감"]):
-        major = "🧠 심리학과"
-        description = (
-            "심리학과는 인간의 마음과 행동을 이해하고 분석하는 학과예요. 💬\n"
-            "인지, 정서, 발달, 상담 등 다양한 심리 이론을 배우고 실험과 연구를 통해 사람을 이해합니다. 🔬\n"
-            "졸업 후에는 상담사, HR 전문가, 교육자, 연구원 등 사람과 관련된 다양한 분야에서 활동할 수 있어요. 🌱"
-        )
-        return major, description
+    # 자연과학/생명
+    elif any(word in traits for word in ["생명", "연구", "실험", "화학", "물리"]):
+        return "🔬 생명과학과", "생물과 자연 현상을 연구하고 실험하며 과학적 탐구 능력을 키우는 학과예요. 🧬"
+    elif any(word in traits for word in ["수학", "통계", "분석"]):
+        return "📊 수학/통계학과", "수학적 사고와 통계 분석 능력을 활용하여 다양한 문제를 해결하는 학과예요."
 
-    elif any(word in traits for word in ["창의", "그림", "디자인", "예술", "색감", "아이디어"]):
-        major = "🎨 디자인학과"
-        description = (
-            "디자인학과는 시각적 표현과 창의력을 활용해 다양한 디자인을 배우는 학과예요. 🖌️\n"
-            "그래픽 디자인, 산업 디자인, UX/UI, 패션, 영상 등 실무 프로젝트를 통해 아이디어를 구현합니다. ✨\n"
-            "졸업 후에는 디자이너, UX/UI 전문가, 영상 제작자, 패션 디자이너 등 창의적인 직업으로 진출할 수 있어요. 🌟"
-        )
-        return major, description
+    # 인문/사회
+    elif any(word in traits for word in ["사람", "심리", "상담", "교류"]):
+        return "🧠 심리학과", "인간의 마음과 행동을 이해하고 분석하는 학과예요. 💬"
+    elif any(word in traits for word in ["사회", "정책", "연구", "봉사"]):
+        return "🌍 사회학과", "사회 구조와 문제를 연구하고 사회 개선 방안을 탐구하는 학과예요."
+    elif any(word in traits for word in ["교육", "아이", "학습", "가르침"]):
+        return "📚 교육학과", "교육 방법과 학습 과정을 연구하며 교사나 교육 컨설턴트로 진출할 수 있어요."
+    elif any(word in traits for word in ["경제", "금융", "사업", "관리"]):
+        return "💰 경영/경제학과", "기업 운영, 재무, 마케팅 등을 배우며 전략적 사고를 기르는 학과예요."
+    elif any(word in traits for word in ["법", "규칙", "정의", "분쟁"]):
+        return "⚖️ 법학과", "법과 정의, 사회 규범을 배우며 변호사, 판사, 법률 전문가로 진출할 수 있어요."
+    elif any(word in traits for word in ["역사", "문화", "과거"]):
+        return "🏛️ 역사학과", "인류의 과거 사건과 문화를 연구하고 분석하는 학과예요."
+    elif any(word in traits for word in ["언어", "문학", "커뮤니케이션"]):
+        return "📝 언어/문학과", "언어와 글, 문학을 연구하며 번역, 교육, 커뮤니케이션 분야로 진출할 수 있어요."
+    
+    # 예술
+    elif any(word in traits for word in ["창의", "그림", "디자인", "예술"]):
+        return "🎨 디자인/예술학과", "시각적 표현과 창의력을 활용하여 다양한 디자인을 배우는 학과예요."
+    elif any(word in traits for word in ["음악", "연주", "작곡"]):
+        return "🎵 음악학과", "음악 이론, 작곡, 연주를 배우며 음악적 표현 능력을 키우는 학과예요."
+    elif any(word in traits for word in ["체육", "운동", "건강"]):
+        return "🏋️‍♂️ 체육학과", "운동, 스포츠 과학, 건강 관리 등을 배우며 체력과 지도 능력을 향상시켜요."
 
-    elif any(word in traits for word in ["자연", "실험", "연구", "생명", "화학", "물리", "분석"]):
-        major = "🔬 생명과학과"
-        description = (
-            "생명과학과는 생물과 자연 현상을 연구하며 실험과 분석을 통해 이해하는 학과예요. 🧬\n"
-            "세포, 유전, 생태, 분자생물학 등 다양한 지식을 배우고 연구 실험을 통해 과학적 탐구 능력을 키워요. 🧪\n"
-            "졸업 후에는 연구원, 생명공학 전문가, 환경 분석가, 의학 관련 분야 등으로 진출할 수 있어요. 🌿"
-        )
+    # 의학/보건
+    elif any(word in traits for word in ["의학", "치료", "건강", "병원", "환자"]):
+        return "🏥 의학/의예과", "인체와 질병을 연구하고 치료 방법을 배우는 학과예요. 💉"
+    elif any(word in traits for word in ["약", "약학", "화학", "연구"]):
+        return "💊 약학과", "약물 연구, 개발, 관리 등 약학 전반을 배우는 학과예요."
+
+    # 환경/자연
+    elif any(word in traits for word in ["환경", "자연", "지구", "보호", "지속"]):
+        return "🌱 환경과학과", "지구 환경과 생태계를 연구하고 문제 해결 능력을 기르는 학과예요."
+
         return major, description
 
     else:
