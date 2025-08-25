@@ -26,13 +26,15 @@ df = pd.DataFrame(disease_data)
 st.set_page_config(page_title="🏥 병원 스타일 질병 가이드", layout="wide")
 
 # ------------------------------
-# 병원 느낌 배경 & 카드 CSS
+# 배경 이미지 패턴 + CSS
 # ------------------------------
 st.markdown("""
 <style>
-/* 배경 색상 */
 body {
-    background: linear-gradient(135deg, #e0f7fa, #ffffff);
+    background-color: #e0f7fa;
+    background-image: url('https://i.ibb.co/3fK0H6r/medical-pattern.png');
+    background-repeat: repeat;
+    background-size: 100px 100px;
 }
 
 /* 타이틀 */
@@ -46,7 +48,7 @@ body {
     text-shadow: 1px 1px 5px rgba(0,0,0,0.1);
 }
 
-/* 카드 스타일 - Glassmorphism */
+/* 카드 스타일 */
 .card {
     background: rgba(255,255,255,0.85);
     border-radius: 20px;
@@ -60,22 +62,9 @@ body {
     box-shadow: 0 12px 25px rgba(0,0,0,0.25);
 }
 
-/* 컬럼 레이아웃 */
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-/* 카드 내부 텍스트 */
-.card h3 {
-    color: #00796b;
-    font-weight: 700;
-}
-.card p {
-    color: #004d40;
-    font-size: 15px;
-}
+/* 카드 텍스트 */
+.card h3 { color: #00796b; font-weight: 700; }
+.card p { color: #004d40; font-size: 15px; }
 
 /* 푸터 */
 .footer {
@@ -90,7 +79,7 @@ body {
 # ------------------------------
 # 타이틀
 # ------------------------------
-st.markdown('<div class="title">🏥 병원 스타일 질병 가이드</div>', unsafe_allow_html=True)
+st.markdown('<div class="title">🏥 병원 느낌 질병 가이드</div>', unsafe_allow_html=True)
 st.write("💡 질병 검색과 분류 필터로 치료 정보를 확인하세요.")
 
 # ------------------------------
